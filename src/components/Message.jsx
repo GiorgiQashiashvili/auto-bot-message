@@ -69,8 +69,8 @@ function Message() {
                             <div className="messages">
 
                                 <ul>{messages.map((m, idx) => (
-                                    <li key={idx}>
-                                        <b>{m.side}:</b>{m.text}
+                                    <li key={idx} className="chat">
+                                       <p><span>{m.side}</span>{m.text}</p> 
                                     </li>
                                 ))}
                                 </ul>
