@@ -5,8 +5,14 @@ import { FaFacebook } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa6";
 import Message from "./components/Message";
 import user from "./assets/default-avatar-icon-of-social-media-user-vector.jpg"
+import { useState } from "react";
 
 function App() {
+const [following, setFollowing] =useState(false)
+
+const toggleFollowing = ()=>{
+setFollowing(prev=>!prev)
+}
 
   return (
     <div className="main">
@@ -62,7 +68,7 @@ function App() {
 
         <div className="buttons">
 
-          <button className="follow">Follow</button>
+          <button onClick={toggleFollowing} className={`follow ${following ? "follow" : "following"}`}>{following ? "Follow" : "Following"}</button>
 
           <Message />
 

@@ -5,27 +5,44 @@ import { LuSend } from "react-icons/lu";
 
 function Message() {
     const [messageOpen, setMessageOpen] = useState(false)
-    const [sendMessage, setSendMessage] = useState({
-        side: "",
-        text: "",
-    })
     const [input, setInput] = useState("")
     const [messages, setMessages] = useState([])
+
+    const botReplies = {
+        "გამარჯობა": "გაგიმარჯოს 👋",
+        "როგორ ხარ": "კარგად, შენ? 🙂",
+        "რას შვები": "ვმუშაობ კოდზე 💻",
+        "კარგად მადლობა" :"ძალიან კარგი",
+        "ვინ ხარ": "მე ვარ @user128378322138, Giorgi Qashiashvili-ს მიერ შექმნილი მოდელი 🧠",
+        "ჟიზნ ვორამ": "ვეჩნად!",
+        "ვინ არის Giorgi Qashiashvili": "@user128378322138 მოდელის შემქმნელი, კონკრეტულად, ჩემი შემქმნელი",
+        "რომელი მეფე მოიხსენიება როგორც „მეფეთ მეფე": "დავით აღმაშენებელი",
+        "რომელი ღირსშესანიშნაობა მდებარეობს მცხეთაში?": "სვეტიცხოველი",
+        "საქართველოს დედაქალაქი რომელია?": "თბილისი",
+        "რომელ წელს გამოცხადდა საქართველოს დამოუკიდებლობა": "1991 წელს",
+        "რომელია საქართველოს ეროვნული სიმბოლო?": "ვაზისა და ყურძნის მტევანი",
+    }
 
     const handleAdd = () => {
         if (!input.trim()) return
 
 
         const newMessage = {
-            side: "",
+            side: "me",
             text: input.trim(),
         }
 
         setMessages(prev => [...prev, newMessage])
 
-        setSendMessage(newMessage)
 
+        const userText = input.trim()
         setInput("")
+
+        setTimeout(() => {
+            let reply = botReplies[userText] || "სხვანაირად მკითხე, ვერ გავიგე 🤔";
+            const botMessage = { side: "bot", text: reply }
+            setMessages((prev) => [...prev, botMessage])
+        }, 800)
 
     }
 
@@ -69,8 +86,8 @@ function Message() {
                             <div className="messages">
 
                                 <ul>{messages.map((m, idx) => (
-                                    <li key={idx} className="chat">
-                                       <p><span>{m.side}</span>{m.text}</p> 
+                                    <li key={idx} className={`chat ${m.side === "me" ? "me" : "bot"}`}>
+                                        <p>{m.text}</p>
                                     </li>
                                 ))}
                                 </ul>
@@ -84,8 +101,6 @@ function Message() {
                                     value={input}
                                     onChange={(e) => setInput(e.target.value)}
                                 />
-
-
                                 <button onClick={handleAdd}><LuSend /></button>
                             </div>
 
