@@ -215,3 +215,30 @@ button {
   margin-left: auto;
   text-align: right;
 }
+
+@media (max-width:640px){
+  .content{
+    width: 300px;
+    font-size: 14px;
+    height: 400px;
+  }
+  .profile img{
+    width: 100px;
+  }
+  .text{
+    width: 200px;
+    font-size: 10px;
+  }
+.message-main{
+  width: 350px;
+}
+.user-info{
+font-size: 13px;
+}
+.messages{
+  font-size: 13px;
+}
+.footer{
+  width: 310px;
+}
+}
