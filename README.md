@@ -13,3 +13,4 @@ If you are developing a production application, we recommend using TypeScript wi
 # Auto-Bot-Message
 # Message-Auto_Bot
 # Auto-Bot-Message
+# auto-bot-message
